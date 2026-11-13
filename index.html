@@ -1,0 +1,978 @@
+ <!DOCTYPE html>
+    <html lang="fr" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MIA'MS Babi - Gourmandises Maison</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-body: #fdfbf7;
+            --bg-card: #ffffff;
+            --bg-dark: #2c150c;
+            --bg-banner: linear-gradient(135deg, #2c150c 0%, #5c2d16 50%, #2c150c 100%);
+            --primary: #b8860b;
+            --primary-hover: #966d08;
+            --accent-brown: #4a2311;
+            --text-dark: #2c150c;
+            --text-muted: #6b5344;
+            --text-light: #fdfbf7;
+            --border-color: #e6dccf;
+            --border-highlight: #f3e5ab;
+            --font-title: 'Playfair Display', serif;
+            --font-body: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-body);
+            color: var(--text-dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: var(--font-title);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            border-bottom: 3px solid var(--primary);
+            box-shadow: 0 4px 15px rgba(44, 21, 12, 0.25);
+        }
+
+        .header-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0.75rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .brand-area {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .header-logo {
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--primary);
+            background-color: #f5efe6;
+        }
+
+        .logo-text {
+            font-size: 1.65rem;
+            font-weight: 800;
+            color: var(--primary);
+            display: flex;
+            flex-direction: column;
+            line-height: 1.1;
+        }
+
+        .logo-sub {
+            font-size: 0.75rem;
+            font-family: var(--font-body);
+            color: #f3e5ab;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-top: 2px;
+        }
+
+        .header-phone {
+            background-color: rgba(184, 134, 11, 0.2);
+            border: 1px solid var(--primary);
+            color: #f3e5ab;
+            padding: 0.4rem 0.9rem;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .header-phone:hover {
+            background-color: var(--primary);
+            color: var(--bg-dark);
+        }
+
+        .banner {
+            background: var(--bg-banner);
+            color: var(--text-light);
+            text-align: center;
+            padding: 3rem 1.5rem;
+            border-bottom: 1px solid rgba(184, 134, 11, 0.3);
+        }
+
+        .banner-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .tagline {
+            display: inline-block;
+            background-color: rgba(184, 134, 11, 0.2);
+            color: #f3e5ab;
+            border: 1px solid var(--primary);
+            padding: 0.25rem 0.85rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.75rem;
+        }
+
+        .banner h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 0.75rem;
+            line-height: 1.2;
+        }
+
+        .banner p {
+            font-size: 1.1rem;
+            color: #e6dccf;
+        }
+
+        .section-container {
+            max-width: 1100px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 2.5rem 1.5rem;
+            flex: 1;
+        }
+
+        .menu-tabs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .tab-btn {
+            background-color: var(--bg-card);
+            border: 2px solid var(--border-color);
+            padding: 0.8rem 1.4rem;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: var(--font-body);
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .tab-btn:hover {
+            border-color: var(--primary);
+            color: var(--accent-brown);
+        }
+
+        .tab-btn.active {
+            background-color: var(--bg-dark);
+            color: var(--primary);
+            border-color: var(--primary);
+            box-shadow: 0 4px 12px rgba(44, 21, 12, 0.2);
+        }
+
+        .tab-btn.tab-reserve-btn.active {
+            background-color: var(--primary);
+            color: var(--bg-dark);
+        }
+
+        .cart-badge {
+            background-color: var(--primary);
+            color: var(--bg-dark);
+            padding: 0.1rem 0.5rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 800;
+        }
+
+        .tab-btn.tab-reserve-btn.active .cart-badge {
+            background-color: var(--bg-dark);
+            color: var(--primary);
+        }
+
+        .menu-tab-content {
+            display: none;
+            animation: fadeIn 0.35s ease-in-out;
+        }
+
+        .menu-tab-content.active {
+            display: block;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .menu-category {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 10px rgba(44, 21, 12, 0.04);
+        }
+
+        .menu-category h3 {
+            font-size: 1.35rem;
+            color: var(--accent-brown);
+            border-bottom: 2px solid var(--border-highlight);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.85rem 1rem;
+            margin-bottom: 0.75rem;
+            background-color: #faf6f0;
+            border: 1px solid #f0e6d8;
+            border-radius: 12px;
+            transition: background-color 0.2s ease;
+        }
+
+        .menu-item:hover {
+            background-color: #f5ebd9;
+        }
+
+        .item-info {
+            padding-right: 0.75rem;
+        }
+
+        .item-name {
+            font-weight: 700;
+            color: var(--text-dark);
+            font-size: 1rem;
+        }
+
+        .item-price {
+            font-weight: 800;
+            color: var(--primary-hover);
+            font-size: 0.9rem;
+        }
+
+        .qty-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-shrink: 0;
+        }
+
+        .btn-qty {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 1px solid var(--border-color);
+            background-color: #ffffff;
+            color: var(--text-dark);
+            font-weight: 800;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-qty:hover {
+            background-color: var(--primary);
+            color: #ffffff;
+            border-color: var(--primary);
+        }
+
+        .qty-count {
+            width: 24px;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .booking-card {
+            background-color: var(--bg-card);
+            border-radius: 20px;
+            box-shadow: 0 10px 25px -5px rgba(44, 21, 12, 0.1);
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            max-width: 750px;
+            margin: 0 auto;
+        }
+
+        .booking-header {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            text-align: center;
+            padding: 1.5rem;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        .booking-header h2 {
+            color: var(--primary);
+            font-size: 1.75rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .direct-contact-bar {
+            background-color: #faf6f0;
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 1.5rem;
+            text-align: center;
+            font-size: 0.95rem;
+            color: var(--accent-brown);
+        }
+
+        .direct-contact-bar strong {
+            color: var(--primary-hover);
+            font-size: 1.05rem;
+        }
+
+        .booking-form {
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.25rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .form-group label {
+            font-size: 0.875rem;
+            font-weight: 700;
+            color: var(--accent-brown);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(184, 134, 11, 0.2);
+        }
+
+        .summary-box {
+            background-color: #faf6f0;
+            border: 1px solid var(--border-highlight);
+            border-radius: 12px;
+            padding: 1.25rem;
+        }
+
+        .summary-title {
+            font-weight: 700;
+            color: var(--accent-brown);
+            margin-bottom: 0.75rem;
+            font-size: 0.95rem;
+        }
+
+        .order-details-list {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+            padding-left: 1rem;
+            list-style: disc;
+        }
+
+        .summary-row.total {
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid var(--border-color);
+            padding-top: 0.75rem;
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            align-items: baseline;
+        }
+
+        .summary-row.total .total-amount {
+            color: var(--primary-hover);
+        }
+
+        .delivery-notice {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            text-align: right;
+            margin-top: 0.25rem;
+            font-style: italic;
+        }
+
+        .btn-submit {
+            background-color: var(--bg-dark);
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            padding: 1rem;
+            border-radius: 10px;
+            font-size: 1.05rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-submit:hover {
+            background-color: var(--primary);
+            color: var(--bg-dark);
+        }
+
+        .alert-box {
+            padding: 1rem;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            display: none;
+            text-align: center;
+        }
+
+        .alert-box.success {
+            display: block;
+            background-color: #f0fdf4;
+            color: #166534;
+            border: 1px solid #bbf7d0;
+        }
+
+        footer {
+            background-color: var(--bg-dark);
+            color: #e6dccf;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            border-top: 2px solid var(--primary);
+        }
+
+        @media (max-width: 640px) {
+            .header-container {
+                justify-content: center;
+                text-align: center;
+            }
+            .banner h2 {
+                font-size: 1.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <div class="brand-area">
+                <img src="logo.jpg" alt="Logo MIA'MS Babi" class="header-logo">
+                <h1 class="logo-text">
+                    MIA'MS Babi
+                    <span class="logo-sub">Sucrées & Salées</span>
+                </h1>
+            </div>
+            <a href="tel:+2250705008108" class="header-phone">
+                📞 07 05 00 81 08
+            </a>
+        </div>
+    </header>
+    <section class="banner">
+        <div class="banner-container">
+            <span class="tagline">Gourmandises Maison</span>
+            <h2>Gourmandises Faites Maison</h2>
+            <p>Commandez vos crêpes, donuts, pop cakes et douceurs faits maison.</p>
+        </div>
+    </section>
+    <main class="section-container">
+
+        <div class="menu-tabs">
+            <button class="tab-btn active" onclick="switchTab(event, 'tab-crepes')">🥞 Crêpes</button>
+            <button class="tab-btn" onclick="switchTab(event, 'tab-donuts')">🍩 Donuts & Pop Cakes</button>
+            <button class="tab-btn" onclick="switchTab(event, 'tab-boissons')">🥤 Jus & Boissons</button>
+            <button class="tab-btn tab-reserve-btn" onclick="switchTab(event, 'tab-reserver')">
+                📅 Réserver <span id="cart-count" class="cart-badge">0</span>
+            </button>
+        </div>
+
+        <div id="tab-crepes" class="menu-tab-content active">
+            <div class="cards-grid">
+                <div class="menu-category">
+                    <h3> Crêpe Nutella </h3>
+                 <img src="crepenutella.jpeg" height="250" width="250">
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <div class="item-name">Crêpes Nutella (2 pièces)</div>
+                            <div class="item-price">500 FCFA</div>
+                        </div>
+                        <div class="qty-controls">
+                            <button class="btn-qty" onclick="updateQty('nutella_2', -1)">-</button>
+                            <span id="qty-nutella_2" class="qty-count">0</span>
+                            <button class="btn-qty" onclick="updateQty('nutella_2', 1)">+</button>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <div class="item-name">Crêpes Nutella (5 pièces)</div>
+                            <div class="item-price">1 000 FCFA</div>
+                        </div>
+                        <div class="qty-controls">
+                            <button class="btn-qty" onclick="updateQty('nutella_5', -1)">-</button>
+                            <span id="qty-nutella_5" class="qty-count">0</span>
+                            <button class="btn-qty" onclick="updateQty('nutella_5', 1)">+</button>
+                        </div>
+                    </div>
+                     <h3>Crêpe Nature</h3>
+                    <img src="crepenature.jpeg" height="250" width="250">
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <div class="item-name">Crêpes nature (3 pièces)</div>
+                            <div class="item-price">500 FCFA</div>
+                        </div>
+                        <div class="qty-controls">
+                            <button class="btn-qty" onclick="updateQty('nature_3', -1)">-</button>
+                            <span id="qty-nature_3" class="qty-count">0</span>
+                            <button class="btn-qty" onclick="updateQty('nature_3', 1)">+</button>
+                        </div>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <div class="item-name">Crêpes nature (7 pièces)</div>
+                            <div class="item-price">1 000 FCFA</div>
+                        </div>
+                        <div class="qty-controls">
+                            <button class="btn-qty" onclick="updateQty('nature_7', -1)">-</button>
+                            <span id="qty-nature_7" class="qty-count">0</span>
+                            <button class="btn-qty" onclick="updateQty('nature_7', 1)">+</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-category">
+                    <h3>Crêpes de Rose</h3>
+                   <img src="bouqcrepe.jpg" height="300" width="250">
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <div class="item-name">Crêpes de Rose - La Box (6 pièces)</div>
+                            <div class="item-price">3 000 FCFA</div>
+                        </div>
+                        <div class="qty-controls">
+                            <button class="btn-qty" onclick="updateQty('rose_box', -1)">-</button>
+                            <span id="qty-rose_box" class="qty-count">0</span>
+                            <button class="btn-qty" onclick="updateQty('rose_box', 1)">+</button>
+                        </div>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <div class="item-name">Crêpes de Rose - L'Assiette (10 pièces)</div>
+                            <div class="item-price">5 000 FCFA</div>
+                        </div>
+                        <div class="qty-controls">
+                            <button class="btn-qty" onclick="updateQty('rose_assiette', -1)">-</button>
+                            <span id="qty-rose_assiette" class="qty-count">0</span>
+                            <button class="btn-qty" onclick="updateQty('rose_assiette', 1)">+</button>
+                        </div>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <div class="item-name">Crêpes de Rose - Le Bouquet</div>
+                            <div class="item-price">Dès 7 000 FCFA</div>
+                        </div>
+                        <div class="qty-controls">
+                            <button class="btn-qty" onclick="updateQty('rose_bouquet', -1)">-</button>
+                            <span id="qty-rose_bouquet" class="qty-count">0</span>
+                            <button class="btn-qty" onclick="updateQty('rose_bouquet', 1)">+</button>
+                        </div>
+                    </div>
+                    <h3>Crêpes Spéciales & Suppléments</h3>
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <div class="item-name">Crêpes personnalisées</div>
+                            <div class="item-price">Dès 3 000 FCFA</div>
+                        </div>
+                        <div class="qty-controls">
+                            <button class="btn-qty" onclick="updateQty('crepe_perso', -1)">-</button>
+                            <span id="qty-crepe_perso" class="qty-count">0</span>
+                            <button class="btn-qty" onclick="updateQty('crepe_perso', 1)">+</button>
+                        </div>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <div class="item-name">Supplément Chocolat</div>
+                            <div class="item-price">300 FCFA</div>
+                        </div>
+                        <div class="qty-controls">
+                            <button class="btn-qty" onclick="updateQty('supp_chocolat', -1)">-</button>
+                            <span id="qty-supp_chocolat" class="qty-count">0</span>
+                            <button class="btn-qty" onclick="updateQty('supp_chocolat', 1)">+</button>
+                        </div>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <div class="item-name">Autres Suppléments</div>
+                            <div class="item-price">Dès 500 FCFA</div>
+                        </div>
+                        <div class="qty-controls">
+                            <button class="btn-qty" onclick="updateQty('supp_autres', -1)">-</button>
+                            <span id="qty-supp_autres" class="qty-count">0</span>
+                            <button class="btn-qty" onclick="updateQty('supp_autres', 1)">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="tab-donuts" class="menu-tab-content">
+            <div class="cards-grid">
+                <div class="menu-category">
+                    <h3>Nos Donuts</h3>
+                <img src="donut.jpeg" height="250" width="250">
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <div class="item-name">Donuts Nature (10 pièces)</div>
+                            <div class="item-price">1 500 FCFA</div>
+                        </div>
+                        <div class="qty-controls">
+                            <button class="btn-qty" onclick="updateQty('donut_nature', -1)">-</button>
+                            <span id="qty-donut_nature" class="qty-count">0</span>
+                            <button class="btn-qty" onclick="updateQty('donut_nature', 1)">+</button>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <div class="item-name">Donuts Chocolat (10 pièces)</div>
+                            <div class="item-price">2 000 FCFA</div>
+                        </div>
+                        <div class="qty-controls">
+                            <button class="btn-qty" onclick="updateQty('donut_choc', -1)">-</button>
+                            <span id="qty-donut_choc" class="qty-count">0</span>
+                            <button class="btn-qty" onclick="updateQty('donut_choc', 1)">+</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-category">
+                    <h3>Pop Cakes & Boules de Neige</h3>
+                   <img src="boule.jpeg" width="250" height="250">
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <div class="item-name">Pop Cakes Nature (15 pièces)</div>
+                            <div class="item-price">1 000 FCFA</div>
+                        </div>
+                        <div class="qty-controls">
+                            <button class="btn-qty" onclick="updateQty('popcake_nature', -1)">-</button>
+                            <span id="qty-popcake_nature" class="qty-count">0</span>
+                            <button class="btn-qty" onclick="updateQty('popcake_nature', 1)">+</button>
+                        </div>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <div class="item-name">Pop Cakes Chocolat (15 pièces)</div>
+                            <div class="item-price">1 500 FCFA</div>
+                        </div>
+                        <div class="qty-controls">
+                            <button class="btn-qty" onclick="updateQty('popcake_choc', -1)">-</button>
+                            <span id="qty-popcake_choc" class="qty-count">0</span>
+                            <button class="btn-qty" onclick="updateQty('popcake_choc', 1)">+</button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+        <div id="tab-boissons" class="menu-tab-content">
+            <div class="cards-grid">
+                <div class="menu-category">
+                    <h3>🥤 Jus & Boissons Maison</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">
+                    </p>
+
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <div class="item-name">Jus de Bissap</div>
+                            <div class="item-price"> 300 FCFA</div>
+                        </div>
+                        <div class="qty-controls">
+                            <button class="btn-qty" onclick="updateQty('jus_bissap', -1)">-</button>
+                            <span id="qty-jus_bissap" class="qty-count">0</span>
+                            <button class="btn-qty" onclick="updateQty('jus_bissap', 1)">+</button>
+                        </div>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <div class="item-name">Jus de Gingembre </div>
+                            <div class="item-price"> 300 FCFA</div>
+                        </div>
+                        <div class="qty-controls">
+                            <button class="btn-qty" onclick="updateQty('jus_gingembre', -1)">-</button>
+                            <span id="qty-jus_gingembre" class="qty-count">0</span>
+                            <button class="btn-qty" onclick="updateQty('jus_gingembre', 1)">+</button>
+                        </div>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <div class="item-name">Menthe au lait</div>
+                            <div class="item-price"> 300 FCFA</div>
+                        </div>
+                        <div class="qty-controls">
+                            <button class="btn-qty" onclick="updateQty('jus_autre1', -1)">-</button>
+                            <span id="qty-jus_autre1" class="qty-count">0</span>
+                            <button class="btn-qty" onclick="updateQty('jus_autre1', 1)">+</button>
+                        </div>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <div class="item-name">Boisson gazeuse</div>
+                            <div class="item-price"> Dès 500 FCFA</div>
+                        </div>
+                        <div class="qty-controls">
+                            <button class="btn-qty" onclick="updateQty('eau_soda', -1)">-</button>
+                            <span id="qty-eau_soda" class="qty-count">0</span>
+                            <button class="btn-qty" onclick="updateQty('eau_soda', 1)">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="tab-reserver" class="menu-tab-content">
+            <div class="booking-card">
+                <div class="booking-header">
+                    <h2>Réserver & Commander</h2>
+                    <p>Sur commande - Remplissez le formulaire ci-dessous</p>
+                </div>
+
+                <div class="direct-contact-bar">
+                    Commandez directement par téléphone ou WhatsApp au :
+                    <br><strong>📞 07 05 00 81 08</strong>
+                </div>
+
+                <form id="reservationForm" class="booking-form" onsubmit="submitOrder(event)">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="clientName">Votre Nom complet *</label>
+                            <input type="text" id="clientName" placeholder="Ex: Kouassi Aya" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="clientPhone">Votre Numéro de téléphone *</label>
+                            <input type="tel" id="clientPhone" placeholder="Ex: 07 00 00 00 00" required>
+                        </div>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="orderType">Mode de réception *</label>
+                            <select id="orderType" required>
+                                <option value="Livraison">Livraison à Abidjan</option>
+                                <option value="Sur commande spéciale">Commande spéciale (Bouquet / Événement)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="bookingDate">Date et Heure souhaitées *</label>
+                            <input type="datetime-local" id="bookingDate" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="clientNotes">Précisions (Adresse de livraison, personnalisation...)</label>
+                        <textarea id="clientNotes" rows="2" placeholder="Ex: Adresse à Cocody, message sur la boîte..."></textarea>
+                    </div>
+
+                    <div class="summary-box">
+                        <div class="summary-title">🛒 Récapitulatif de votre sélection :</div>
+                        <ul id="order-list" class="order-details-list">
+                            <li>Aucun article sélectionné. Naviguez dans les onglets pour composer votre panier.</li>
+                        </ul>
+                        <div class="summary-row total">
+                            <span>Total estimé :</span>
+                            <span id="total-price" class="total-amount">0 FCFA</span>
+                        </div>
+                        <div class="delivery-notice">* Total hors frais de livraison</div>
+                    </div>
+
+                    <button type="submit" class="btn-submit">Valider ma commande</button>
+
+                    <div id="confirmationAlert" class="alert-box"></div>
+                </form>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- PIED DE PAGE -->
+    <footer>
+        <p><strong>MIA'MS Babi</strong> - Gourmandises maison pour tous vos moments</p>
+        <p>Contact & Commandes : 07 05 00 81 08 | Abidjan, Côte d'Ivoire</p>
+    </footer>
+
+    <!-- SCRIPT JAVASCRIPT -->
+    <script>
+        // Catalogue des produits et prix
+        const menuItems = {
+            nutella_2: { name: "Crêpes Nutella (2 pcs)", price: 500, qty: 0 },
+            nutella_5: { name: "Crêpes Nutella (5 pcs)", price: 1000, qty: 0 },
+            nature_3: { name: "Crêpes nature (3 pcs)", price: 500, qty: 0 },
+            nature_7: { name: "Crêpes nature (7 pcs)", price: 1000, qty: 0 },
+            rose_box: { name: "Crêpes de Rose - Box (6 pcs)", price: 3000, qty: 0 },
+            rose_assiette: { name: "Crêpes de Rose - Assiette (10 pcs)", price: 5000, qty: 0 },
+            rose_bouquet: { name: "Crêpes de Rose - Bouquet", price: 7000, qty: 0 },
+            crepe_perso: { name: "Crêpes personnalisées", price: 3000, qty: 0 },
+            supp_chocolat: { name: "Supplément Chocolat", price: 300, qty: 0 },
+            supp_autres: { name: "Autres Suppléments", price: 500, qty: 0 },
+            donut_nature: { name: "Donuts Nature (10 pcs)", price: 1500, qty: 0 },
+            donut_choc: { name: "Donuts Chocolat (10 pcs)", price: 2000, qty: 0 },
+            popcake_nature: { name: "Pop Cakes Nature (15 pcs)", price: 1000, qty: 0 },
+            popcake_choc: { name: "Pop Cakes Chocolat (15 pcs)", price: 1500, qty: 0 },
+            boule_neige: { name: "Boules de Neige", price: 1500, qty: 0 },
+            jus_bissap: { name: "Jus de Bissap Maison", price: 1000, qty: 0 },
+            jus_gingembre: { name: "Jus de Gingembre", price: 1000, qty: 0 },
+            jus_autre1: { name: "Autre Jus / Boisson", price: 1500, qty: 0 },
+            eau_soda: { name: "Eau / Soda", price: 500, qty: 0 }
+        };
+
+        function switchTab(event, tabId) {
+            document.querySelectorAll('.menu-tab-content').forEach(c => c.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+
+        function updateQty(itemKey, change) {
+            const item = menuItems[itemKey];
+            if (!item) return;
+            item.qty = Math.max(0, item.qty + change);
+            document.getElementById(`qty-${itemKey}`).textContent = item.qty;
+            updateSummary();
+        }
+
+        function updateSummary() {
+            const orderListEl = document.getElementById('order-list');
+            const totalPriceEl = document.getElementById('total-price');
+            const cartCountEl = document.getElementById('cart-count');
+
+            orderListEl.innerHTML = '';
+            let total = 0;
+            let totalArticles = 0;
+
+            for (const key in menuItems) {
+                const item = menuItems[key];
+                if (item.qty > 0) {
+                    const subtotal = item.qty * item.price;
+                    total += subtotal;
+                    totalArticles += item.qty;
+
+                    const li = document.createElement('li');
+                    li.textContent = `${item.qty}x ${item.name} — ${subtotal.toLocaleString('fr-FR')} FCFA`;
+                    orderListEl.appendChild(li);
+                }
+            }
+
+            if (totalArticles === 0) {
+                orderListEl.innerHTML = '<li>Aucun article sélectionné. Naviguez dans les onglets pour composer votre panier.</li>';
+            }
+
+            cartCountEl.textContent = totalArticles;
+            totalPriceEl.textContent = `${total.toLocaleString('fr-FR')} FCFA`;
+        }
+
+        function submitOrder(event) {
+            event.preventDefault();
+            const name = document.getElementById('clientName').value;
+            const phone = document.getElementById('clientPhone').value;
+            const mode = document.getElementById('orderType').value;
+            const date = document.getElementById('bookingDate').value;
+            const notes = document.getElementById('clientNotes').value;
+            const totalText = document.getElementById('total-price').textContent;
+
+            let itemsSummary = "";
+            let totalArticles = 0;
+
+            for (const key in menuItems) {
+                const item = menuItems[key];
+                if (item.qty > 0) {
+                    itemsSummary += `- ${item.qty}x ${item.name} (${item.qty * item.price} FCFA)\n`;
+                    totalArticles += item.qty;
+                }
+            }
+
+            if (totalArticles === 0) {
+                alert("Veuillez sélectionner au moins un article avant de commander.");
+                return;
+            }
+
+            // Numéro WhatsApp configuré au format international sans le signe +
+            const whatsappNumber = "2250705008108";
+
+            const message = `Bonjour MIA'MS Babi, je souhaite passer une commande :\n\n` +
+                `👤 Nom : ${name}\n` +
+                `📞 Téléphone : ${phone}\n` +
+                `📦 Mode : ${mode}\n` +
+                `📅 Date/Heure : ${date}\n` +
+                `📝 Notes : ${notes || 'Aucune'}\n\n` +
+                `🛒 *Détail de la commande :*\n${itemsSummary}\n` +
+                `💰 *Total estimé : ${totalText}*`;
+
+            const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+            window.open(whatsappURL, '_blank');
+        }
+    </script>
+</body>
+</html>
